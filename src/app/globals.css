@@ -1,0 +1,400 @@
+@import "tailwindcss";
+
+:root {
+  /* Gothic Palette */
+  --bg-void: #050505;
+  --bg-primary: #0A0A0A;
+  --bg-surface: #111111;
+  --bg-surface-raised: #181816;
+  --border-subtle: #1C1A18;
+  --border-medium: #2A2723;
+
+  --text-primary: #D4C5A9;
+  --text-secondary: #8A8A8A;
+  --text-tertiary: #7A7A7A;
+
+  --blood: #8B0000;
+  --blood-bright: #C41E3A;
+  --blood-dim: #8B000020;
+  --blood-glow: #C41E3A30;
+  --gold: #B8860B;
+  --gold-dim: #B8860B20;
+  --bone: #D4C5A9;
+  --ash: #8A8A8A;
+
+  /* Fonts */
+  --font-display: var(--font-cinzel);
+  --font-body: var(--font-crimson-text);
+
+  /* Spacing */
+  --nav-height: 64px;
+}
+
+@theme inline {
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --color-surface: var(--bg-surface);
+  --color-surface-raised: var(--bg-surface-raised);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-medium: var(--border-medium);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-accent: var(--blood-bright);
+  --color-accent-dim: var(--blood-dim);
+  --color-accent-glow: var(--blood-glow);
+  --color-blood: var(--blood);
+  --color-blood-bright: var(--blood-bright);
+  --color-gold: var(--gold);
+  --color-gold-dim: var(--gold-dim);
+  --color-bone: var(--bone);
+  --color-ash: var(--ash);
+  --color-danger: var(--blood-bright);
+  --color-danger-dim: var(--blood-dim);
+  /* Map Tailwind font utilities to our gothic fonts */
+  --font-sans: var(--font-cinzel), "Palatino Linotype", serif;
+  --font-serif: var(--font-crimson-text), "Georgia", serif;
+  --font-mono: var(--font-crimson-text), "Georgia", serif;
+  --font-display: var(--font-cinzel);
+  --font-body: var(--font-crimson-text);
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-crimson-text), "Georgia", serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-cinzel), "Palatino Linotype", serif !important;
+}
+
+/* Film grain overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: repeating-conic-gradient(
+    var(--bone) 0% 25%,
+    transparent 0% 50%
+  );
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+  animation: grain 0.5s steps(1) infinite;
+}
+
+/* Dark vignette */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 50%,
+    transparent 0%,
+    rgba(5, 5, 5, 0.3) 50%,
+    rgba(5, 5, 5, 0.7) 80%,
+    rgba(5, 5, 5, 0.95) 100%
+  );
+}
+
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-1px, -1px); }
+  20% { transform: translate(1px, 0); }
+  30% { transform: translate(0, 1px); }
+  40% { transform: translate(-1px, 1px); }
+  50% { transform: translate(1px, -1px); }
+  60% { transform: translate(-1px, 0); }
+  70% { transform: translate(1px, 1px); }
+  80% { transform: translate(0, -1px); }
+  90% { transform: translate(1px, 0); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Ensure content is above overlays */
+body > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* Selection */
+::selection {
+  background: var(--blood);
+  color: var(--bone);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blood);
+}
+
+/* ========================================
+   TYPOGRAPHY UTILITIES
+   ======================================== */
+
+.font-blackletter {
+  font-family: var(--font-unifraktur), "Old English Text MT", serif !important;
+}
+
+.font-display {
+  font-family: var(--font-cinzel), "Palatino Linotype", serif !important;
+}
+
+.font-body {
+  font-family: var(--font-crimson-text), "Georgia", serif !important;
+}
+
+.text-blood {
+  color: var(--blood-bright);
+}
+
+.text-bone {
+  color: var(--bone);
+}
+
+.text-ash {
+  color: var(--ash);
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.text-accent {
+  color: var(--blood-bright);
+}
+
+.text-amber {
+  color: var(--gold);
+}
+
+.text-danger {
+  color: var(--blood-bright);
+}
+
+.bg-accent-dim {
+  background: var(--blood-dim);
+}
+
+.border-accent {
+  border-color: var(--blood-bright);
+}
+
+/* ========================================
+   GLOW & LIGHT EFFECTS
+   ======================================== */
+
+.glow-blood {
+  box-shadow:
+    0 0 15px var(--blood-glow),
+    0 0 45px var(--blood-dim);
+}
+
+.glow-blood-text {
+  text-shadow:
+    0 0 10px var(--blood-glow),
+    0 0 30px var(--blood-dim);
+}
+
+.glow-gold {
+  box-shadow:
+    0 0 15px var(--gold-dim),
+    0 0 40px rgba(184, 134, 11, 0.1);
+}
+
+/* ========================================
+   GOTHIC DECORATIVE ELEMENTS
+   ======================================== */
+
+/* Vignette overlay (for cards/sections) */
+.vignette {
+  position: relative;
+}
+
+.vignette::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(5, 5, 5, 0.6) 100%
+  );
+  z-index: 1;
+}
+
+/* Parchment border: aged, weathered double-line */
+.parchment-border {
+  border: 1px solid var(--border-medium);
+  box-shadow:
+    inset 0 0 0 1px var(--border-subtle),
+    0 0 20px rgba(5, 5, 5, 0.5);
+}
+
+/* Blood drip: a subtle irregular top border */
+.blood-drip {
+  position: relative;
+}
+
+.blood-drip::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--blood) 8%,
+    var(--blood-bright) 15%,
+    var(--blood) 25%,
+    transparent 30%,
+    transparent 40%,
+    var(--blood) 45%,
+    var(--blood-bright) 52%,
+    var(--blood) 60%,
+    transparent 65%,
+    transparent 75%,
+    var(--blood) 80%,
+    var(--blood-bright) 88%,
+    var(--blood) 93%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Stamp: blood red, like a wax seal impression */
+.stamp {
+  font-family: var(--font-display), "Palatino Linotype", serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  border: 3px solid var(--blood);
+  color: var(--blood-bright);
+  padding: 4px 14px;
+  transform: rotate(-6deg);
+  opacity: 0.85;
+  text-shadow: 0 0 8px var(--blood-glow);
+}
+
+/* Redacted text */
+.redacted {
+  background: var(--text-secondary);
+  color: transparent;
+  border-radius: 1px;
+  user-select: none;
+  display: inline-block;
+}
+
+.redacted-block {
+  background: var(--border-subtle);
+  border-radius: 1px;
+  height: 1em;
+  width: 100%;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+/* Candle flicker */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  5% { opacity: 0.85; }
+  10% { opacity: 1; }
+  15% { opacity: 0.7; }
+  20% { opacity: 0.95; }
+  25% { opacity: 1; }
+  50% { opacity: 0.9; }
+  55% { opacity: 1; }
+  70% { opacity: 0.8; }
+  75% { opacity: 1; }
+  90% { opacity: 0.92; }
+}
+
+.flicker {
+  animation: flicker 3s ease-in-out infinite;
+}
+
+/* Slow, eerie pulse for blood indicators */
+@keyframes pulse-blood {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.pulse-blood {
+  animation: pulse-blood 3s ease-in-out infinite;
+}
+
+/* Cursor blink (aged, using bone) */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.cursor-blink::after {
+  content: "|";
+  animation: blink 1.2s step-end infinite;
+  color: var(--blood-bright);
+  margin-left: 2px;
+  font-weight: 300;
+}
+
+/* Fog drift */
+@keyframes fog-drift {
+  0% { transform: translateX(-10%) translateY(0); opacity: 0.03; }
+  50% { transform: translateX(5%) translateY(-5px); opacity: 0.06; }
+  100% { transform: translateX(-10%) translateY(0); opacity: 0.03; }
+}
+
+.fog-overlay {
+  position: relative;
+}
+
+.fog-overlay::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 120% 80% at 30% 80%,
+    rgba(212, 197, 169, 0.04) 0%,
+    transparent 70%
+  );
+  animation: fog-drift 12s ease-in-out infinite;
+  z-index: 0;
+}
