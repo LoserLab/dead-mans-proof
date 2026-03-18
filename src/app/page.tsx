@@ -110,7 +110,7 @@ export default function Home() {
       {/* ============================================
           HERO
           ============================================ */}
-      <section className="relative flex min-h-[70vh] sm:min-h-[92vh] flex-col items-center justify-center overflow-hidden px-6">
+      <section className="relative flex min-h-[55vh] sm:min-h-[92vh] flex-col items-center justify-center overflow-hidden px-6">
         {/* Crypt mist at the bottom */}
         <div
           className="pointer-events-none absolute bottom-0 left-0 right-0"
