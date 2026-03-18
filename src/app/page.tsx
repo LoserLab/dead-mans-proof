@@ -110,7 +110,7 @@ export default function Home() {
       {/* ============================================
           HERO
           ============================================ */}
-      <section className="relative flex min-h-[92vh] flex-col items-center justify-center overflow-hidden px-6">
+      <section className="relative flex min-h-[70vh] sm:min-h-[92vh] flex-col items-center justify-center overflow-hidden px-6">
         {/* Crypt mist at the bottom */}
         <div
           className="pointer-events-none absolute bottom-0 left-0 right-0"
@@ -199,7 +199,7 @@ export default function Home() {
 
           {/* CTA */}
           <motion.div
-            className="mt-12 flex flex-col items-center gap-5"
+            className="mt-8 sm:mt-12 flex flex-col items-center gap-5"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.8 }}
@@ -566,53 +566,49 @@ export default function Home() {
           FOOTER
           ============================================ */}
       <footer className="ironwork-border relative px-6 pt-14 pb-10">
-        <div className="mx-auto relative max-w-6xl flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
-          <div className="flex items-center gap-3">
-            <span className="font-display text-sm font-bold tracking-[0.1em] text-text-primary">
-              DMP
-            </span>
-            <span
-              className="text-[8px] opacity-25"
-              style={{ color: "var(--gold)" }}
-            >
-              &#10014;
-            </span>
-            <span className="font-body text-[11px] text-text-secondary">
-              Dead Man&apos;s Proof
-            </span>
-          </div>
-
-          <span className="font-body text-[10px] text-text-secondary order-last sm:order-none sm:absolute sm:left-1/2 sm:-translate-x-1/2">
+        <div className="mx-auto max-w-6xl flex items-center justify-center gap-3 flex-wrap">
+          <span className="font-display text-sm font-bold tracking-[0.1em] text-text-primary">
+            DMP
+          </span>
+          <span
+            className="text-[8px] opacity-25"
+            style={{ color: "var(--gold)" }}
+          >
+            &#10014;
+          </span>
+          <span className="font-body text-[10px] text-text-secondary">
             &copy; 2026 Loser Labs
           </span>
-
-          <div className="flex items-center gap-4">
-            <a
-              href="https://x.com/heathenft"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#D4C5A9] transition-colors hover:text-text-primary"
-              title="@heathenft on X"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
-            <span className="text-text-tertiary opacity-30">|</span>
-            <a
-              href="https://sepolia.basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 opacity-60 transition-opacity hover:opacity-100"
-              title="View contract on BaseScan"
-            >
-              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" className="text-[#0052FF]">
-                <circle cx="7" cy="7" r="6.5" stroke="currentColor" />
-                <path d="M7 3.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" fill="currentColor" />
-              </svg>
-              <span className="font-body text-[10px] text-text-secondary">Base</span>
-            </a>
-          </div>
+          <span
+            className="text-[8px] opacity-25"
+            style={{ color: "var(--gold)" }}
+          >
+            &#10014;
+          </span>
+          <a
+            href="https://x.com/heathenft"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#D4C5A9] transition-colors hover:text-text-primary"
+            title="@heathenft on X"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+          <a
+            href="https://sepolia.basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 opacity-60 transition-opacity hover:opacity-100"
+            title="View contract on BaseScan"
+          >
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none" className="text-[#0052FF]">
+              <circle cx="7" cy="7" r="6.5" stroke="currentColor" />
+              <path d="M7 3.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" fill="currentColor" />
+            </svg>
+            <span className="font-body text-[10px] text-text-secondary">Base</span>
+          </a>
         </div>
       </footer>
     </div>
