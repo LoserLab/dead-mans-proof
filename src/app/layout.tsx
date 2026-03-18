@@ -111,6 +111,13 @@ function Navbar() {
           >
             Deposit
           </Link>
+          <Link
+            href="/about"
+            className="font-body text-[10px] sm:text-xs font-semibold uppercase tracking-[0.15em] sm:tracking-[0.25em] text-text-secondary transition-colors hover:text-bone"
+            style={{ fontVariant: "small-caps" }}
+          >
+            About
+          </Link>
 
           {/* Sealed count */}
           <div className="hidden items-center gap-3 rounded-sm border border-border-subtle bg-surface px-3 py-1.5 md:flex parchment-border">
