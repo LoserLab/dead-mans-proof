@@ -25,10 +25,54 @@ const crimsonText = Crimson_Text({
 });
 
 export const metadata: Metadata = {
-  title: "Dead Man's Proof",
-  description:
-    "Privacy-preserving attestations on Base. Your data stays sealed. Only the truth gets out.",
   metadataBase: new URL("https://dead-mans-proof.vercel.app"),
+  title: {
+    default: "Dead Man's Proof | Privacy-Preserving Attestations on Base",
+    template: "%s | Dead Man's Proof",
+  },
+  description:
+    "Seal private data onchain and let anyone verify claims against it without revealing the underlying information. Privacy-preserving attestations built on Base.",
+  keywords: [
+    "privacy attestation",
+    "onchain privacy",
+    "Base blockchain",
+    "zero-knowledge proof",
+    "private data verification",
+    "sealed vault",
+    "cryptographic attestation",
+  ],
+  authors: [{ name: "Loser Labs", url: "https://x.com/heathenft" }],
+  creator: "Loser Labs",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://dead-mans-proof.vercel.app",
+    siteName: "Dead Man's Proof",
+    title: "Dead Man's Proof | Privacy-Preserving Attestations on Base",
+    description:
+      "Seal private data onchain and let anyone verify claims against it without revealing the underlying information.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dead Man's Proof",
+    description:
+      "Seal private data onchain. Verify claims without revealing secrets. Built on Base.",
+    creator: "@heathenft",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://dead-mans-proof.vercel.app",
+  },
 };
 
 function Navbar() {
@@ -88,8 +132,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Dead Man's Proof",
+    url: "https://dead-mans-proof.vercel.app",
+    description:
+      "Seal private data onchain and let anyone verify claims against it without revealing the underlying information.",
+    applicationCategory: "BlockchainApplication",
+    operatingSystem: "Web",
+    creator: {
+      "@type": "Organization",
+      name: "Loser Labs",
+      url: "https://x.com/heathenft",
+    },
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${unifraktur.variable} ${cinzel.variable} ${crimsonText.variable} antialiased`}
       >
