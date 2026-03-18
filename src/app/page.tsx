@@ -187,7 +187,7 @@ export default function Home() {
 
           {/* Subtitle */}
           <motion.p
-            className="font-body mt-7 max-w-lg text-lg leading-relaxed text-text-secondary italic sm:text-xl"
+            className="font-body mt-7 max-w-lg text-xl leading-relaxed text-text-secondary italic sm:text-xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.8 }}
@@ -210,7 +210,7 @@ export default function Home() {
             >
               <span className="relative z-10">Enter the Vault</span>
             </Link>
-            <span className="font-body text-xs tracking-wide text-text-tertiary">
+            <span className="font-body text-sm tracking-wide text-text-tertiary">
               No sacrifice required to begin
             </span>
           </motion.div>
@@ -340,7 +340,7 @@ export default function Home() {
                 <h3 className="relative mt-6 font-display text-lg font-semibold tracking-wide text-text-primary">
                   {step.title}
                 </h3>
-                <p className="font-body relative mt-3 text-sm leading-relaxed text-text-secondary">
+                <p className="font-body relative mt-3 text-base leading-relaxed text-text-secondary">
                   {step.description}
                 </p>
 
@@ -469,7 +469,7 @@ export default function Home() {
                       TRUE
                     </span>
                   </div>
-                  <p className="font-body mt-1.5 text-[12px] leading-relaxed text-text-secondary">
+                  <p className="font-body mt-1.5 text-sm leading-relaxed text-text-secondary">
                     The depositor holds more than 10 ETH. Verified against
                     sealed vault data.
                   </p>
