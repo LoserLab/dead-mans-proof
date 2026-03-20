@@ -17,46 +17,38 @@
 
 ---
 
-## Overview
+## What is it
 
-An AI agent that holds private data and answers yes/no questions about it without revealing the underlying information. Every attestation is committed onchain with a cryptographic hash of the original data.
+An AI agent holds your private data and answers yes/no questions about it, without ever revealing the underlying information. Every answer is published as a verifiable attestation onchain.
+
+Machine clients pay per query via the [Machine Payments Protocol (MPP)](https://mpp.dev) by Tempo and Stripe.
 
 - **Seal** private data into the vault
-- **Query** the vault with natural language yes/no questions
-- **Attest** the agent evaluates and publishes a verifiable attestation onchain
+- **Query** with natural language yes/no questions
+- **Pay** per attestation via MPP
+- **Verify** every answer is committed onchain
 
 ## How it works
 
-1. User deposits private data (resume, financial, calendar). The agent stores it and publishes a `keccak256` hash commitment onchain.
-2. Anyone can submit a yes/no question against the sealed data.
-3. The agent evaluates the query using privacy-first inference (Venice AI, no data retention), then publishes the attestation onchain.
-4. The raw data never leaves the vault. Only the boolean answer, confidence score, and privacy-safe reasoning are returned.
+1. Deposit private data (resume, financial, calendar). A hash commitment is published onchain.
+2. Submit a yes/no question against the sealed data.
+3. The agent evaluates and returns a boolean answer, confidence score, and privacy-safe reasoning.
+4. The attestation is published onchain. The raw data never leaves the vault.
+
+## MPP Payments
+
+Attestation queries are gated by the Machine Payments Protocol (HTTP 402 challenge-response). Machine clients discover pricing at `/api/mpp/info` and pay per query at `/api/mpp/query`.
+
+A free rate-limited demo endpoint is available at `/api/query`.
 
 ## Stack
 
 | Layer | Technology |
 |-------|-----------|
 | Frontend | Next.js 16, React 19, Tailwind CSS v4, Motion |
-| AI Inference | Venice AI (no data retention) |
-| Smart Contract | Solidity 0.8.24, Foundry |
+| Payments | MPP via mppx (Tempo + Stripe) |
+| Smart Contract | Solidity, Foundry |
 | Chain | Base Sepolia |
-| Onchain Interaction | viem |
-
-## Contract
-
-**DeadMansVault** is deployed on Base Sepolia:
-
-| | |
-|---|---|
-| Address | [`0x4334EbC7750a4eBd8835906B4bCc71D045891617`](https://sepolia.basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617) |
-| Network | Base Sepolia (Chain ID: 84532) |
-| Tests | 9/9 passing |
-
-```bash
-cd contracts
-forge build
-forge test
-```
 
 ## Run locally
 
@@ -65,22 +57,27 @@ npm install
 npm run dev
 ```
 
-The app runs with demo data pre-loaded. Add your Venice API key to `.env.local` for real AI evaluations:
+The app runs with demo data pre-loaded. Add your keys to `.env.local`:
 
 ```
 VENICE_API_KEY=your-key-here
+MPP_SECRET_KEY=your-random-hex-secret
+MPP_RECIPIENT_ADDRESS=your-tempo-wallet-address
 ```
 
-## Security
+## Contract
 
-- 5-layer prompt injection defense (input sanitization, message isolation, hardened system prompt, leak detection, output truncation)
-- Rate limiting (5 queries/min per IP, 200/day global)
-- Input length validation (5,000 char deposit limit, 500 char query limit)
-- Agent-only attestation access control onchain
+Deployed on Base Sepolia at [`0x4334EbC7750a4eBd8835906B4bCc71D045891617`](https://sepolia.basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617).
+
+```bash
+cd contracts
+forge build
+forge test
+```
 
 ## Built with
 
-<a href="https://mirra.app">
+<a href="https://x.com/mirra">
   <img src="https://img.shields.io/badge/Built_in-Mirra-black?style=flat" alt="Built in Mirra" />
 </a>
 
