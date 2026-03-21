@@ -1,4 +1,5 @@
 import OpenAI from 'openai';
+import { store } from './store';
 
 export interface AgentEvaluation {
   answer: boolean;
@@ -120,6 +121,23 @@ export async function evaluateQuery(
       },
     ],
   });
+
+  // Estimate inference cost from token usage or flat rate
+  const usage = response.usage;
+  const isVenice = !!process.env.VENICE_API_KEY;
+  let estimatedCost: number;
+  if (usage) {
+    // Venice llama-3.3-70b: ~$0.0004/1K input, ~$0.0004/1K output
+    // OpenAI gpt-4o: ~$2.50/1M input, ~$10/1M output
+    if (isVenice) {
+      estimatedCost = ((usage.prompt_tokens || 0) + (usage.completion_tokens || 0)) * 0.0000004;
+    } else {
+      estimatedCost = (usage.prompt_tokens || 0) * 0.0000025 + (usage.completion_tokens || 0) * 0.00001;
+    }
+  } else {
+    estimatedCost = isVenice ? 0.0003 : 0.005;
+  }
+  store.recordInferenceCost(estimatedCost);
 
   const text = response.choices[0]?.message?.content || '';
 

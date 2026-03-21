@@ -150,6 +150,10 @@ export async function POST(request: NextRequest) {
 
     store.addAttestation(commitmentId, attestation);
 
+    // --- Record revenue from MPP payment ---
+    store.recordRevenue(0.01);
+    store.recordQuery(true);
+
     // --- Return result with MPP receipt ---
     const response = NextResponse.json({
       attestation: {
@@ -159,6 +163,12 @@ export async function POST(request: NextRequest) {
         txHash: attestation.txHash ?? null,
         queryHash: attestation.queryHash,
         timestamp: attestation.timestamp,
+      },
+      agentIdentity: {
+        erc8004ParticipantId: 'ec2fb5979a1b47a2a7bbfa18ab9a4bf2',
+        wallet: '0x8c072C22B6aB61b163DC26AAA35c9da97f92E201',
+        model: 'llama-3.3-70b',
+        provider: 'Venice AI',
       },
       payment: {
         protocol: 'mpp',

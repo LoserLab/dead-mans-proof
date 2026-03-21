@@ -295,10 +295,47 @@ export default function AboutPage() {
 
       <Divider />
 
+      {/* Why Venice */}
+      <section className="px-6 py-12 sm:py-16">
+        <div className="mx-auto max-w-3xl">
+          <span className="font-display text-[10px] font-semibold uppercase tracking-[0.35em] text-[var(--gold)]">
+            Inference
+          </span>
+          <h2 className="mt-4 font-display text-2xl font-bold tracking-[0.03em] text-text-primary sm:text-3xl">
+            Why Venice AI?
+          </h2>
+          <div className="font-body mt-6 space-y-4 text-base leading-relaxed text-text-secondary">
+            <p>
+              Privacy is the product. The inference layer cannot store, log, or
+              train on vault data. Venice AI enforces zero data retention at the
+              infrastructure level: sealed data enters the model, the attestation
+              comes out, and nothing persists.
+            </p>
+            <p>
+              The agent reasons over confidential information and then acts on it
+              publicly. It evaluates private resumes, financial records, and
+              calendars, then publishes verifiable attestations onchain. Venice
+              makes this possible because the sensitive data never leaves the
+              session boundary.
+            </p>
+            <p>
+              No other inference provider offers this guarantee at the protocol
+              level. Without it, a privacy-preserving attestation system would be
+              privacy theater.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
       {/* Why Base */}
       <section className="px-6 py-12 sm:py-16">
         <div className="mx-auto max-w-3xl">
-          <h2 className="font-display text-2xl font-bold tracking-[0.03em] text-text-primary sm:text-3xl">
+          <span className="font-display text-[10px] font-semibold uppercase tracking-[0.35em] text-[var(--gold)]">
+            Chain
+          </span>
+          <h2 className="mt-4 font-display text-2xl font-bold tracking-[0.03em] text-text-primary sm:text-3xl">
             Why Base?
           </h2>
           <div className="font-body mt-6 space-y-4 text-base leading-relaxed text-text-secondary">

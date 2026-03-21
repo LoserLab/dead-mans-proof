@@ -1,6 +1,20 @@
 import { keccak256, toHex } from 'viem';
 import { DataCommitment, Attestation } from './types';
 
+export interface EconomicsSnapshot {
+  totalRevenue: number;       // pathUSD received from MPP payments
+  totalInferenceCost: number; // USD estimate for LLM API calls
+  totalGasCost: number;       // ETH estimate for onchain attestations
+  paidQueries: number;
+  freeQueries: number;
+  totalQueries: number;
+  uptimeSeconds: number;
+  netMargin: number;          // revenue - totalCosts
+  revenuePerQuery: number;
+  costPerQuery: number;
+  selfFundingRatio: number;   // revenue / totalCosts (Infinity if no costs)
+}
+
 const DEMO_SEED = [
   {
     schemaType: 'resume' as const,
@@ -35,6 +49,14 @@ class DataStore {
   private commitments: Map<string, DataCommitment> = new Map();
   private privateData: Map<string, string> = new Map(); // commitmentId -> raw data
   private attestations: Map<string, Attestation[]> = new Map(); // commitmentId -> attestations
+
+  // Economics tracking
+  private totalRevenue = 0;
+  private totalInferenceCost = 0;
+  private totalGasCost = 0;
+  private paidQueries = 0;
+  private freeQueries = 0;
+  private startTime = Date.now();
 
   constructor() {
     this.seedDemoData();
@@ -104,6 +126,48 @@ class DataStore {
 
   getAllCommitments(): DataCommitment[] {
     return Array.from(this.commitments.values());
+  }
+
+  // Economics methods
+
+  recordRevenue(amount: number) {
+    this.totalRevenue += amount;
+  }
+
+  recordInferenceCost(cost: number) {
+    this.totalInferenceCost += cost;
+  }
+
+  recordGasCost(cost: number) {
+    this.totalGasCost += cost;
+  }
+
+  recordQuery(paid: boolean) {
+    if (paid) {
+      this.paidQueries++;
+    } else {
+      this.freeQueries++;
+    }
+  }
+
+  getEconomics(): EconomicsSnapshot {
+    const totalQueries = this.paidQueries + this.freeQueries;
+    const totalCosts = this.totalInferenceCost + this.totalGasCost;
+    const uptimeSeconds = Math.floor((Date.now() - this.startTime) / 1000);
+
+    return {
+      totalRevenue: this.totalRevenue,
+      totalInferenceCost: this.totalInferenceCost,
+      totalGasCost: this.totalGasCost,
+      paidQueries: this.paidQueries,
+      freeQueries: this.freeQueries,
+      totalQueries,
+      uptimeSeconds,
+      netMargin: this.totalRevenue - totalCosts,
+      revenuePerQuery: totalQueries > 0 ? this.totalRevenue / totalQueries : 0,
+      costPerQuery: totalQueries > 0 ? totalCosts / totalQueries : 0,
+      selfFundingRatio: totalCosts > 0 ? this.totalRevenue / totalCosts : Infinity,
+    };
   }
 }
 

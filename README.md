@@ -46,9 +46,25 @@ A free rate-limited demo endpoint is available at `/api/query`.
 | Layer | Technology |
 |-------|-----------|
 | Frontend | Next.js 16, React 19, Tailwind CSS v4, Motion |
+| AI Inference | [Venice AI](https://venice.ai) (privacy-first, no data retention) |
 | Payments | MPP via mppx (Tempo + Stripe) |
 | Smart Contract | Solidity, Foundry |
 | Chain | Base Sepolia |
+| Agent Identity | ERC-8004 verified agent NFT |
+
+## Why Venice
+
+Privacy is the product, so the inference layer can't be an afterthought. Venice AI runs inference with zero data retention: the sealed vault data enters the model, the attestation comes out, and nothing is stored. No logs, no training, no retrieval. The agent reasons over confidential information and acts on it publicly, publishing onchain attestations without the underlying data ever persisting outside the vault.
+
+This makes Dead Man's Proof a system where sensitive data can be evaluated, verified, and attested to without any party (including the AI provider) retaining access to it.
+
+## Agent Economics
+
+The agent funds its own inference. Machine clients pay 0.01 pathUSD per attestation query via the Machine Payments Protocol. That revenue covers Venice AI inference costs and Base gas fees for onchain attestation publishing. The agent's real-time P&L is exposed at [`/api/agent/economics`](https://dead-mans-proof.vercel.app/api/agent/economics).
+
+## Agent Identity (ERC-8004)
+
+The agent holds a verified ERC-8004 identity on Base, linking every attestation to a cryptographically verifiable agent. Identity, trust score, and registration proof are exposed at [`/api/agent/identity`](https://dead-mans-proof.vercel.app/api/agent/identity). The agent can also self-validate past attestations for consistency via [`/api/agent/validate`](https://dead-mans-proof.vercel.app/api/agent/validate).
 
 ## Run locally
 

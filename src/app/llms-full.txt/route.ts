@@ -47,14 +47,28 @@ The AI agent evaluates the query against the sealed data using privacy-first inf
 - **Reasoning**: Privacy-safe explanation that does not leak underlying data
 - **Onchain Record**: The attestation is published to Base with the commitment hash
 
+## Why Venice AI
+
+Privacy is load-bearing infrastructure, not a feature. Venice AI enforces zero data retention at the protocol level: sealed vault data enters the model, the attestation comes out, and nothing is stored. No logs, no training data, no retrieval. The agent reasons over confidential information (resumes, financial records, calendars) and acts on it publicly by publishing onchain attestations. Venice makes this possible because sensitive data never persists outside the session boundary.
+
+## Agent Economics
+
+The agent is self-funding. Machine clients pay 0.01 pathUSD per attestation query via the Machine Payments Protocol (MPP). Revenue covers Venice AI inference costs and Base gas fees. Real-time P&L is exposed at /api/agent/economics.
+
+## Agent Identity (ERC-8004)
+
+The agent holds a verified ERC-8004 identity on Base. Every attestation is traceable to a cryptographically verifiable agent. Identity, trust score, and registration proof: /api/agent/identity. Autonomous self-validation of past attestations: /api/agent/validate.
+
 ## Architecture
 
 | Layer | Technology |
 |-------|-----------|
 | Frontend | Next.js 16, React 19, Tailwind CSS v4, Motion |
-| AI Inference | Venice AI (no data retention policy) |
+| AI Inference | Venice AI (zero data retention, privacy-first) |
+| Payments | Machine Payments Protocol (MPP) via mppx |
 | Smart Contract | Solidity 0.8.24 (DeadMansVault) |
 | Chain | Base Sepolia |
+| Agent Identity | ERC-8004 verified agent NFT |
 | Onchain Interaction | viem |
 
 ## Smart Contract
@@ -79,8 +93,13 @@ The contract stores:
 
 - POST /api/deposit: Seal data into a new vault
 - GET /api/commitments: List all sealed vaults
-- POST /api/query: Submit a yes/no question against a vault
+- POST /api/query: Submit a yes/no question against a vault (free, rate-limited)
+- POST /api/mpp/query: Submit a paid query via Machine Payments Protocol
+- GET /api/mpp/info: Service discovery for MPP clients
 - GET /api/attestations/{commitmentId}: Get attestation history for a vault
+- GET /api/agent/identity: Agent ERC-8004 identity and trust score
+- GET /api/agent/economics: Agent self-funding P&L (revenue, costs, margin)
+- POST /api/agent/validate: Autonomous self-validation of past attestations
 
 ## Use Cases
 
