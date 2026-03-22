@@ -7,8 +7,8 @@ import type { Hex } from 'viem';
 
 // --- Rate limiting ---
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
-const RATE_LIMIT_MAX = 5; // 5 queries per minute per IP
-const GLOBAL_DAILY_LIMIT = 200; // total queries per day across all users
+const RATE_LIMIT_MAX = 30; // 30 queries per minute per IP
+const GLOBAL_DAILY_LIMIT = 5000; // total queries per day across all users
 
 const ipRequests = new Map<string, number[]>();
 let globalDailyCount = 0;

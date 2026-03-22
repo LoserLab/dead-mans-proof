@@ -430,10 +430,15 @@ export default function QueryPage() {
   /* ---- Fetch commitment + history on mount ---- */
   const fetchHistory = useCallback(async () => {
     try {
-      const res = await fetch(`/api/attestations/${commitmentId}`);
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 15000);
+      const res = await fetch(`/api/attestations/${commitmentId}`, { signal: controller.signal });
+      clearTimeout(timeout);
       if (!res.ok) {
         if (res.status === 404) {
           setError("Commitment not found. It may have been removed or the ID is invalid.");
+        } else {
+          setError("Failed to load vault data. Please refresh the page.");
         }
         return;
       }
@@ -445,7 +450,7 @@ export default function QueryPage() {
         )
       );
     } catch {
-      console.error("Failed to fetch attestation history");
+      setError("Network error loading vault. Please refresh the page.");
     } finally {
       setLoadingHistory(false);
     }

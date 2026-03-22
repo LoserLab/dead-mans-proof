@@ -56,21 +56,27 @@ export default function BrowsePage() {
   const [error, setError] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function fetchCommitments() {
-      try {
-        const res = await fetch('/api/commitments');
-        if (!res.ok) throw new Error('Failed to fetch');
-        const data = await res.json();
-        setCommitments(data.commitments);
-      } catch {
-        setError('Could not summon the registry.');
-      } finally {
-        setIsLoading(false);
-      }
+  const fetchCommitments = useCallback(async () => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 15000);
+      const res = await fetch('/api/commitments', { signal: controller.signal });
+      clearTimeout(timeout);
+      if (!res.ok) throw new Error('Failed to fetch');
+      const data = await res.json();
+      setCommitments(data.commitments);
+    } catch {
+      setError('Could not summon the registry.');
+    } finally {
+      setIsLoading(false);
     }
-    fetchCommitments();
   }, []);
+
+  useEffect(() => {
+    fetchCommitments();
+  }, [fetchCommitments]);
 
   const copyId = useCallback((id: string, e: React.MouseEvent) => {
     e.preventDefault();
@@ -164,6 +170,12 @@ export default function BrowsePage() {
               className="rounded-lg border border-[#C41E3A]/30 bg-[#C41E3A]/[0.06] px-5 py-4 mb-8"
             >
               <p className="text-sm font-serif text-[#C41E3A]">{error}</p>
+              <button
+                onClick={fetchCommitments}
+                className="mt-3 text-xs font-serif uppercase tracking-widest text-[#D4C5A9] hover:text-white transition-colors"
+              >
+                Try again
+              </button>
             </motion.div>
           )}
         </AnimatePresence>

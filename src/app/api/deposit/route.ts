@@ -8,8 +8,8 @@ const VALID_SCHEMA_TYPES = ['resume', 'financial', 'calendar'] as const;
 
 // --- Rate limiting: 3 deposits per minute per IP, 50 total per day ---
 const DEPOSIT_WINDOW_MS = 60 * 1000;
-const DEPOSIT_MAX_PER_IP = 3;
-const DEPOSIT_DAILY_LIMIT = 50;
+const DEPOSIT_MAX_PER_IP = 20;
+const DEPOSIT_DAILY_LIMIT = 1000;
 
 const depositIpRequests = new Map<string, number[]>();
 let depositDailyCount = 0;
