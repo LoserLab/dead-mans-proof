@@ -10,6 +10,7 @@ An AI agent that holds private data (resumes, financial records, calendars) and 
 
 - **Site:** https://dead-mans-proof.vercel.app
 - **Repo:** https://github.com/LoserLab/dead-mans-proof
+- **Video:** https://youtu.be/NsyRWJk5zuI
 
 ## Contract
 
