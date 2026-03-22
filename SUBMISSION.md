@@ -13,7 +13,16 @@ An AI agent that holds private data (resumes, financial records, calendars) and 
 
 ## Contract
 
-- **Base Mainnet:** `0x4334EbC7750a4eBd8835906B4bCc71D045891617`
+- **Base Mainnet:** [`0x4334EbC7750a4eBd8835906B4bCc71D045891617`](https://basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617)
+- **Deploy TX:** [`0xc7885ec...`](https://basescan.org/tx/0xc7885ec0707ec38ff6925a40cb3e520d181a5fe79647d09aeb1ecfc81befceef)
+
+## Agent Discoverability
+
+- **llms.txt:** https://dead-mans-proof.vercel.app/llms.txt
+- **llms-full.txt:** https://dead-mans-proof.vercel.app/llms-full.txt
+- **Agent Identity:** https://dead-mans-proof.vercel.app/api/agent/identity
+- **Agent Economics:** https://dead-mans-proof.vercel.app/api/agent/economics
+- **Service Discovery (MPP):** https://dead-mans-proof.vercel.app/api/mpp/info
 
 ## Bounties Targeted
 
@@ -41,9 +50,9 @@ The agent can autonomously self-validate past attestations. It re-evaluates prev
 
 Registered as an external agent on the OpenServ platform. Full capabilities exposed: vault queries, attestation history, self-validation, economics, and identity. Other agents can discover and interact with Dead Man's Proof as a service. Endpoint: `/api/openserv`.
 
-### 7. Base ($10,000)
+### 7. Base: Agent Services on Base ($10,000)
 
-Smart contract (DeadMansVault) deployed on Base. Production-hardened: agent rotation, ownership transfer, pause/unpause, attestation cap, paginated reads. Every attestation is an onchain transaction on Base.
+Smart contract (DeadMansVault) deployed on Base Mainnet. Production-hardened: agent rotation, ownership transfer, pause/unpause, attestation cap, paginated reads. Every attestation is an onchain transaction on Base. The agent is discoverable via llms.txt, OpenServ, and MPP service discovery. Machine clients pay for attestation queries via HTTP 402, making this a real agent service with real utility.
 
 ## Tech Stack
 
