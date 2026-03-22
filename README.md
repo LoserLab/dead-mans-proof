@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://dead-mans-proof.vercel.app">Live Demo</a> &middot;
-  <a href="https://sepolia.basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617">Contract</a> &middot;
+  <a href="https://basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617">Contract</a> &middot;
   <a href="https://x.com/heathenft">@heathenft</a>
 </p>
 
@@ -49,7 +49,7 @@ A free rate-limited demo endpoint is available at `/api/query`.
 | AI Inference | [Venice AI](https://venice.ai) (privacy-first, no data retention) |
 | Payments | MPP via mppx (Tempo + Stripe) |
 | Smart Contract | Solidity, Foundry |
-| Chain | Base Sepolia |
+| Chain | Base |
 | Agent Identity | ERC-8004 verified agent NFT |
 
 ## Why Venice
@@ -83,7 +83,7 @@ MPP_RECIPIENT_ADDRESS=your-tempo-wallet-address
 
 ## Contract
 
-Deployed on Base Sepolia at [`0x4334EbC7750a4eBd8835906B4bCc71D045891617`](https://sepolia.basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617).
+Deployed on Base at [`0x4334EbC7750a4eBd8835906B4bCc71D045891617`](https://basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617).
 
 ```bash
 cd contracts

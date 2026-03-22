@@ -1,6 +1,6 @@
 import { createPublicClient, createWalletClient, http, keccak256, toBytes, type Hex } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
-import { baseSepolia } from 'viem/chains';
+import { base, baseSepolia } from 'viem/chains';
 
 const VAULT_ABI = [
   {
@@ -87,8 +87,8 @@ const VAULT_ABI = [
 ] as const;
 
 function getChain() {
-  // Default to Base Sepolia for development, Base Mainnet for production
-  return baseSepolia;
+  const chainId = process.env.NEXT_PUBLIC_BASE_CHAIN_ID;
+  return chainId === '8453' ? base : baseSepolia;
 }
 
 function getContractAddress(): Hex {

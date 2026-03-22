@@ -29,12 +29,12 @@ Dead Man's Proof lets users seal private data into an onchain vault and allows a
 ## Built By
 
 Loser Labs (@heathenft)
-Built on Base Sepolia.
+Built on Base Mainnet.
 
 ## Links
 
 - Website: https://dead-mans-proof.vercel.app
-- Contract: https://sepolia.basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617
+- Contract: https://basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617
 - X: https://x.com/heathenft
 `;
 

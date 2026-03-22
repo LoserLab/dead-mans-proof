@@ -50,8 +50,8 @@ export async function GET() {
       },
       contract: {
         address: '0x4334EbC7750a4eBd8835906B4bCc71D045891617',
-        chain: 'Base Sepolia',
-        chainId: 84532,
+        chain: 'Base Mainnet',
+        chainId: 8453,
         deployTx:
           '0xaa7697c8a9d94f0a968cf149a7c989dbd7959a371fac36d82edd9bbb19737ea8',
       },
@@ -73,7 +73,7 @@ export async function GET() {
         site: 'https://dead-mans-proof.vercel.app',
         repo: 'https://github.com/LoserLab/dead-mans-proof',
         attestationContract:
-          'https://sepolia.basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617',
+          'https://basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617',
       },
     },
     {

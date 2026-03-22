@@ -19,7 +19,7 @@ export async function GET() {
         'Machine Payments Protocol (MPP) - 0.01 pathUSD per attestation query',
       costSources: [
         'Venice AI inference (llama-3.3-70b, privacy-preserving)',
-        'Base Sepolia gas for onchain attestation publishing',
+        'Base Mainnet gas for onchain attestation publishing',
       ],
       currency: 'pathUSD (Tempo)',
     },

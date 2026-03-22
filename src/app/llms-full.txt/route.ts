@@ -67,13 +67,13 @@ The agent holds a verified ERC-8004 identity on Base. Every attestation is trace
 | AI Inference | Venice AI (zero data retention, privacy-first) |
 | Payments | Machine Payments Protocol (MPP) via mppx |
 | Smart Contract | Solidity 0.8.24 (DeadMansVault) |
-| Chain | Base Sepolia |
+| Chain | Base Mainnet |
 | Agent Identity | ERC-8004 verified agent NFT |
 | Onchain Interaction | viem |
 
 ## Smart Contract
 
-The DeadMansVault contract is deployed on Base Sepolia at:
+The DeadMansVault contract is deployed on Base Mainnet at:
 0x4334EbC7750a4eBd8835906B4bCc71D045891617
 
 The contract stores:
@@ -122,7 +122,7 @@ The contract stores:
 ## Links
 
 - Website: https://dead-mans-proof.vercel.app
-- Contract: https://sepolia.basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617
+- Contract: https://basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617
 - X: https://x.com/heathenft
 - Built by: Loser Labs (@heathenft)
 `;

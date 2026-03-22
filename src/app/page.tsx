@@ -597,7 +597,7 @@ export default function Home() {
             </svg>
           </a>
           <a
-            href="https://sepolia.basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617"
+            href="https://basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 opacity-60 transition-opacity hover:opacity-100"
