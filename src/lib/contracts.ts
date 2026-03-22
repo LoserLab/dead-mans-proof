@@ -30,7 +30,11 @@ const VAULT_ABI = [
     name: 'getAttestations',
     type: 'function',
     stateMutability: 'view',
-    inputs: [{ name: 'commitmentId', type: 'bytes32' }],
+    inputs: [
+      { name: 'commitmentId', type: 'bytes32' },
+      { name: 'offset', type: 'uint256' },
+      { name: 'limit', type: 'uint256' },
+    ],
     outputs: [
       {
         name: '',
@@ -153,7 +157,7 @@ export async function getAttestationsFromChain(commitmentId: Hex) {
     address: getContractAddress(),
     abi: VAULT_ABI,
     functionName: 'getAttestations',
-    args: [commitmentId],
+    args: [commitmentId, BigInt(0), BigInt(1000)],
   });
   return data;
 }
