@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     "sealed vault",
     "cryptographic attestation",
   ],
-  authors: [{ name: "Loser Labs", url: "https://x.com/heathenft" }],
+  authors: [{ name: "Loser Labs", url: "https://x.com/deadmansproof" }],
   creator: "Loser Labs",
   openGraph: {
     type: "website",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: "Dead Man's Proof",
     description:
       "Seal private data onchain. Verify claims without revealing secrets. Built on Base.",
-    creator: "@heathenft",
+    creator: "@deadmansproof",
   },
   robots: {
     index: true,
@@ -151,7 +151,7 @@ export default function RootLayout({
     creator: {
       "@type": "Organization",
       name: "Loser Labs",
-      url: "https://x.com/heathenft",
+      url: "https://x.com/deadmansproof",
     },
   };
 

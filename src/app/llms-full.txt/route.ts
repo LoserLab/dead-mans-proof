@@ -123,8 +123,8 @@ The contract stores:
 
 - Website: https://dead-mans-proof.vercel.app
 - Contract: https://basescan.org/address/0x4334EbC7750a4eBd8835906B4bCc71D045891617
-- X: https://x.com/heathenft
-- Built by: Loser Labs (@heathenft)
+- X: https://x.com/deadmansproof
+- Built by: Loser Labs (@deadmansproof)
 `;
 
   return new Response(content, {
